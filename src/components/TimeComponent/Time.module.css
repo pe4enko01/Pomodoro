@@ -1,0 +1,15 @@
+.mainTimeBlock {
+    height: 400px;
+    display: grid;
+    grid-template-areas: "timer"
+        "button";
+    grid-template-columns:  600px;
+    justify-items: center; 
+}
+.button{
+    grid-area: button;
+}
+
+.timer{
+    grid-area: timer;
+}

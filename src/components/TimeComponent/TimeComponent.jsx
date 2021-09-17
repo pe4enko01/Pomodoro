@@ -9,21 +9,21 @@ export const TimeComponent = () => {
     const [timer, setTimeCouner] = useState(1500);
     const [timerOn, setTimeCounerOn] = useState(false);
 
-    // const lol = () => {
-    //     setTimeCouner(timer => timer - 1); if(timer === 0) {setTimeCounerOn(false)};console.log(timer);clearTimeout(interval)
-    // }
 
     useEffect(() => {
         let interval = null;
 
         if (timerOn === true) {
 
-            interval = setTimeout(() => { setTimeCouner(timer => timer - 1); if(timer === 0) {setTimeCounerOn(false)};console.log(timer);clearTimeout(interval)}, 1000);
+            interval = setTimeout(() => {
+                if (timer > 0) { setTimeCouner(timer => timer - 1) };
+                if (timer === 0) { setTimeCounerOn(false) };
+                clearTimeout(interval)
+            }, 1);
 
         } else if (timerOn === false) {
             clearTimeout(interval);
         }
-
         return () => { clearTimeout(interval) }; //Сброс эффекта
     }, [timer, timerOn]);
 

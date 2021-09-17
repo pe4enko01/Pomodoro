@@ -1,8 +1,11 @@
 import React from "react";
 import styles from './ShowTime.module.css';
 
-export const ShowTime = (props) => {
-    const { timer } = props;
+import { useSelector } from "react-redux";
+
+export const ShowTime = () => {
+
+    const timer = useSelector(state => state.timer.time);
 
     return (
         <p className={styles.timer}>

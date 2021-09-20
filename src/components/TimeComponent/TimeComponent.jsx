@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { ShowTime } from "../ShowTimeComponent/ShowTime.component";
 import { StartStopButton } from "../StartStopButtonComponent/StartStopButton.component";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { timerActions } from "../../store/timerReducer";
 
 import styles from "./Time.module.css";
 
-export const TimeComponent = () => {
+export const TimerComponent = () => {
 
-    const [timer, setTimeCouner] = useState(1500);
-    const [timerOn, setTimeCounerOn] = useState(false);
-
+    const dispatch = useDispatch();
+    const changeTimer = useSelector(state => state.timer.startStopButton);
+    const time = useSelector(state => state.timer.time);
 
     useEffect(() => {
         let interval = null;
-
-        if (timerOn === true) {
-
-            interval = setTimeout(() => {
-                if (timer > 0) { setTimeCouner(timer => timer - 1) };
-                if (timer === 0) { setTimeCounerOn(false) };
-                clearTimeout(interval)
-            }, 1);
-
-        } else if (timerOn === false) {
+        if (changeTimer === true) {
+            interval = setTimeout(() => { if (time > 0) { dispatch(timerActions.changeTime()) }; clearTimeout(interval) }, 1000);
+        } else if (changeTimer === false) {
             clearTimeout(interval);
         }
         return () => { clearTimeout(interval) }; //Сброс эффекта
-    }, [timer, timerOn]);
-
-    const startTimerHendler = () => {
-        setTimeCounerOn(!timerOn);
-    };
+    }, [time, changeTimer, dispatch]);
 
     return (
         <div className={styles.mainTimeBlock}>
-            <ShowTime className={styles.timer} timer={timer} ></ShowTime>
-            <StartStopButton className={styles.button} startStopHendlerProps={startTimerHendler}>{timerOn ? 'Стоп' : 'Старт'}</StartStopButton>
+            <ShowTime className={styles.timer} timer={time} ></ShowTime>
+            <StartStopButton className={styles.button}></StartStopButton>
         </div>
     )
 }

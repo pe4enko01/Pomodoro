@@ -1,12 +1,48 @@
 .taskContainer{
-    width: 400px;
+    margin-top: 10px;
+
+    width: 600px;
     height: 80px;
     border: 1px solid black;
 
     display: flex;
-    flex-direction: colomn;
+    flex-direction: row;
+    justify-content:space-between;
     align-items:center;
+    
+    background-color:white;
+    opacity: 0.8;
+    border: 1px solid white;
+    border-radius: 10px;
+    
+
+    
 }
 .taskText{
-    padding-left: 30px;
+    
+    font-size: 20px;
+    display: block;
+    margin-left: 30px;
+}
+
+.deleteTaskBtton{
+    margin-right: 30px;
+
+    width: 80;
+    height: 40px;
+    background-color: #8f8f8f; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #8f8f8f; 
+    color: white; 
+    border: 2px solid #8f8f8f;
+    border-radius: 10px;
+
 }

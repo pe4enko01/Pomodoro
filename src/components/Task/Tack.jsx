@@ -22,7 +22,7 @@ export const Task = (props) => {
             <div className={styles.taskText}>
                 {props.item}
             </div>
-            <button  onClick={deleteTaskHendler}>Удалить</button>
+            <button  className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
         </div>
     )
 }

@@ -1,6 +1,71 @@
 .addTask{
+    margin-top: 30px;
+    width: 600px;
+    height: 200px;
+
+    background-color:white;
+    opacity: 0.8;
+    border: 1px solid white;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items:center;
+
+}
+
+.closeaTask{
+    margin-top: 30px;
+    width: 600px;
+    height: 100px;
+
+    background-color:white;
+    opacity: 0.8;
+    border: 1px solid white;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items:center;
+}
+.taskContainer{
     display: flex;
     flex-direction: column;
     align-items:center;
+}
+.inputTask{
+    font-size: 20px;
+    display: block;
+    outline:none;
+    border: 0px;
+}
+.inputButton{
+    display: block;
 
+    width: 80;
+    height: 40px;
+    background-color: #8f8f8f; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #8f8f8f; 
+    color: white; 
+    border: 2px solid #8f8f8f;
+    border-radius: 10px;
+    
+}
+
+.inputButton:hover {
+    background-color: #4b4a4a;
+    border: 2px solid #4b4a4a;
+    color: white;
 }

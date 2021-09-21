@@ -1,4 +1,7 @@
 .mainTimeBlock {
+    margin-top: 40px;
+
+
     height: 300px;
     display: grid;
     grid-template-areas: "timer"
@@ -7,7 +10,13 @@
     justify-items: center; 
     gap: 10px;
 
-    border: 1px solid black;
+
+    background-color:white;
+    opacity: 0.8;
+    border: 1px solid white;
+    border-radius: 10px;
+
+
 }
 .button{
     grid-area: button;

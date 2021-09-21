@@ -22,6 +22,9 @@ export const Task = (props) => {
             <div className={styles.taskText}>
                 {props.item}
             </div>
+            <div className={styles.countOfPomodoros}>
+                0/{props.countOfPomodoros}
+            </div>
             <button  className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
         </div>
     )

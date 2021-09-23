@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTaskActions } from '../../store/addTaskReducer';
+import styles from "./IncDecPomodor.module.css"
 
 export const IncDecPomodor = () => {
 
@@ -16,10 +17,10 @@ export const IncDecPomodor = () => {
     };
 
     return (     
-        <div>
-            <div>{incDec}</div>
-           <button onClick={incrementPomodorHendler}>Бол</button>
-           <button onClick={decrementPomodorHendler}>Мен</button>
+        <div className={styles.incdecContainer}>
+            <div className={styles.incdecScreen}>{incDec}</div>
+           <button className={styles.incdecButton} onClick={incrementPomodorHendler}>˄</button>
+           <button className={styles.incdecButton} onClick={decrementPomodorHendler}>˅</button>
         </div>
     )
 }

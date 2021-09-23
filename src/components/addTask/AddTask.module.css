@@ -1,71 +1,131 @@
-.addTask{
+.addTask {
     margin-top: 30px;
     width: 600px;
     height: 200px;
 
-    background-color:white;
-    opacity: 0.8;
-    border: 1px solid white;
+    background-color: rgb(175, 75, 75);
+
+    border: 0px solid white;
     border-radius: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items:center;
+    align-items: flex-start;
 
 }
 
-.closeaTask{
+.closeaTask {
     margin-top: 30px;
     width: 600px;
     height: 100px;
 
-    background-color:white;
+    background-color: white;
     opacity: 0.8;
-    border: 1px solid white;
+    border: 0px solid white;
     border-radius: 10px;
 
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
-    align-items:center;
+    justify-content: space-around;
+    align-items: center;
 }
-.taskContainer{
+
+.taskContainer {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
-.inputTask{
+
+.inputTask {
+    background-color: rgb(175, 75, 75);
+    color:white;
     font-size: 20px;
     display: block;
-    outline:none;
+    outline: none;
     border: 0px;
 }
-.inputButton{
+.inputTask::placeholder {
+    color:white;
+}
+
+.cancelTaskButton {
     display: block;
 
     width: 80;
     height: 40px;
-    background-color: #8f8f8f; /* Green */
+    background-color: #8f8f8f;
+    /* Green */
     border: none;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    margin: 4px 10px 4px 5px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: #8f8f8f; 
-    color: white; 
+    background-color: #8f8f8f;
+    color: white;
     border: 2px solid #8f8f8f;
     border-radius: 10px;
-    
+}
+
+.cancelTaskButton:hover {
+    background-color: #4b4a4a;
+    border: 2px solid #4b4a4a;
+    color: white;
+}
+
+
+.inputButton {
+    display: block;
+
+    width: 80;
+    height: 40px;
+    background-color: #8f8f8f;
+    /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 5px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #8f8f8f;
+    color: white;
+    border: 2px solid #8f8f8f;
+    border-radius: 10px;
+
 }
 
 .inputButton:hover {
     background-color: #4b4a4a;
     border: 2px solid #4b4a4a;
     color: white;
+}
+
+.addTaskFotter {
+    background: #464444;
+    width: 100%;
+    border-radius: 0px 0 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+
+}
+.taskInputContainer{
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    
 }

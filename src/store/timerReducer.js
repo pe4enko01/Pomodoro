@@ -18,6 +18,9 @@ const timerReducer = createSlice({
                 state.startButtonInfo = "Старт";
             }
 
+        },
+        setTimer(state, action){
+            state.time = action.payload;
         }
     }
 })

@@ -61,7 +61,7 @@ export const AddTask = () => {
 
             <div>
                 {taskArr.map((item) => (
-                    <Task checPomodoroProp = {item.pomodoroCheck} key={item.key} taskKey={item.key} items={item.act} countOfPomodoros={item.countOfPomodoros} pomororoTimeProps={item.pomodoroTime}/>
+                    <Task buttonStartTimer={item.buttonStartTimer} checPomodoroProp = {item.pomodoroCheck} key={item.key} taskKey={item.key} items={item.act} countOfPomodoros={item.countOfPomodoros} pomororoTimeProps={item.pomodoroTime}/>
                 ))}
             </div>
 

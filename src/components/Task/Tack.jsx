@@ -13,13 +13,15 @@ export const Task = (props) => {
     const pomodoroTime = useSelector(state => state.addTask.pomodoroTime);
     const [time, lol] = useState(1500);
 
-    const changeTimer = true
+
+
+    const changeTimer = props.buttonStartTimer;
 
 
     useEffect(() => {
         let interval = null;
         if (changeTimer === true) {
-            interval = setTimeout(() => { if (time > 0) { lol(time => time - 1) }; clearTimeout(interval) }, 100);
+            interval = setTimeout(() => { if (time > 0) { lol(time => time - 1); dispatch(timerActions.setTimer(time)) }; clearTimeout(interval) }, 100);
         } else if (changeTimer === false) {
             clearTimeout(interval);
         }
@@ -28,33 +30,35 @@ export const Task = (props) => {
 
 
 
-
-
-
-    const deleteTaskHendler = (e) => {
+    const deleteTaskHendler = () => {
         dispatch(addTaskActions.deleteTask(props.taskKey));
+        dispatch(addTaskActions.checkFirstElement());
     };
 
     const checkPomodoroHendler = () => {
         dispatch(addTaskActions.checkPomodor(props.taskKey));
-       // dispatch(addTaskActions.returnPomororoTime({taskKey: props.taskKey}));
-       // dispatch(addTaskActions.setNewTimerPomodoroArr({taskKey: props.taskKey}));
+        dispatch(timerActions.setTimer(time))
+        // dispatch(addTaskActions.returnPomororoTime({taskKey: props.taskKey}));
+        // dispatch(addTaskActions.setNewTimerPomodoroArr({taskKey: props.taskKey}));
     };
 
 
 
-    
+
 
     return (
-        <div className={props.checPomodoroProp ? styles.taskContainerCheck : styles.taskContainer} onClick={checkPomodoroHendler}>
-            <div className={styles.taskText}>
-                {props.items}
+        <div>
+
+            <div className={props.checPomodoroProp ? styles.taskContainerCheck : styles.taskContainer} onClick={checkPomodoroHendler}>
+                <div className={styles.taskText}>
+                    {props.items}
+                </div>
+                <div className={styles.countOfPomodoros}>
+                    0/{props.countOfPomodoros}----
+                    {time}
+                </div>
+                <button className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
             </div>
-            <div className={styles.countOfPomodoros}>
-                0/{props.countOfPomodoros}----
-                {time}
-            </div>
-            <button className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
         </div>
     )
 }

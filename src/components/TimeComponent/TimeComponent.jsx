@@ -16,17 +16,17 @@ export const TimerComponent = () => {
     const timeOfPomodoro = useSelector(state => state.addTask.pomodoroTime);
     // dispatch(timerActions.setTimer(timeOfPomodoro));
     const time = useSelector(state => state.timer.time);
-    
+    console.log(time);
 
-    useEffect(() => {
-        let interval = null;
-        if (changeTimer === true) {
-            interval = setTimeout(() => { if (time > 0) { dispatch(addTaskActions.setTimerOfPomodoro(time)); dispatch(timerActions.changeTime()); }; clearTimeout(interval) }, 100);
-        } else if (changeTimer === false) {
-            clearTimeout(interval);
-        }
-        return () => { clearTimeout(interval) }; //Сброс эффекта
-    }, [time, changeTimer, dispatch]);
+    // useEffect(() => {
+    //     let interval = null;
+    //     if (changeTimer === true) {
+    //         interval = setTimeout(() => { if (time > 0) { dispatch(addTaskActions.setTimerOfPomodoro(time)); dispatch(timerActions.changeTime()); }; clearTimeout(interval) }, 100);
+    //     } else if (changeTimer === false) {
+    //         clearTimeout(interval);
+    //     }
+    //     return () => { clearTimeout(interval) }; //Сброс эффекта
+    // }, [time, changeTimer, dispatch]);
 
     return (
         <div className={styles.mainTimeBlock}>

@@ -3,20 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addTaskActions } from '../../store/addTaskReducer';
 import { timerActions } from "../../store/timerReducer";
 
-import styles from './Task.module.css'
+import styles from './Task.module.css';
 
 export const Task = (props) => {
     const dispatch = useDispatch();
-    const inputInfo = useSelector(state => state.addTask.task);
-    const taskArr = useSelector(state => state.addTask.arrOfTasks);
-    const helpvar = useSelector(state => state.addTask.helpvar);
-    const pomodoroTime = useSelector(state => state.addTask.pomodoroTime);
     const [time, lol] = useState(1500);
 
-
-
     const changeTimer = props.buttonStartTimer;
-
 
     useEffect(() => {
         let interval = null;
@@ -35,11 +28,15 @@ export const Task = (props) => {
         dispatch(addTaskActions.checkFirstElement());
     };
 
+    const startButtonInfo = useSelector(state=> state.timer.startButtonInfo);
     const checkPomodoroHendler = () => {
+        dispatch(timerActions.toggleStartButtonfromTask(props.checPomodoroProp));
+        dispatch(timerActions.showButtonInfo());
         dispatch(addTaskActions.checkPomodor(props.taskKey));
-        dispatch(timerActions.setTimer(time))
-        // dispatch(addTaskActions.returnPomororoTime({taskKey: props.taskKey}));
-        // dispatch(addTaskActions.setNewTimerPomodoroArr({taskKey: props.taskKey}));
+        dispatch(timerActions.setTimer(time));
+
+    
+        
     };
 
 
@@ -48,7 +45,6 @@ export const Task = (props) => {
 
     return (
         <div>
-
             <div className={props.checPomodoroProp ? styles.taskContainerCheck : styles.taskContainer} onClick={checkPomodoroHendler}>
                 <div className={styles.taskText}>
                     {props.items}
@@ -57,8 +53,11 @@ export const Task = (props) => {
                     0/{props.countOfPomodoros}----
                     {time}
                 </div>
-                <button className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
+            </div>
+            <div className={styles.deleteButtonContainer}>
+                <button  className={styles.deleteTaskBtton} onClick={deleteTaskHendler}>Удалить</button>
             </div>
         </div>
+
     )
 }

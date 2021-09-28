@@ -11,6 +11,12 @@ const timerReducer = createSlice({
         toggle(state){
             state.startStopButton = !state.startStopButton;
         },
+        toggleStartButtonfromTask(state, action){
+            if(action.payload === true && state.startButtonInfo === "Стоп"){
+                state.startStopButton = !state.startStopButton;
+            }
+
+        },
         showButtonInfo(state){
             if(state.startStopButton===true){
                 state.startButtonInfo = "Стоп";

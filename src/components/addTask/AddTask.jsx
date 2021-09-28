@@ -43,6 +43,7 @@ export const AddTask = () => {
             )}
 
             {!toggleTask && (
+                
                 <div className={styles.addTask}>
                     <div className={styles.taskInputContainer}>
 

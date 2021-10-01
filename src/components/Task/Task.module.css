@@ -24,6 +24,23 @@
     width: 595px;
 
 }
+.taskContainerDone{
+    margin-top: 10px;
+
+    width: 600px;
+    height: 70px;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+    
+    background-color:rgb(206, 188, 188);
+    opacity: 0.8;
+    border: 0px solid white;
+    border-radius: 10px 10px 0 0; 
+}
 .taskContainer:hover .taskText{
     margin-left: 25px;
 }
@@ -76,7 +93,13 @@
     word-wrap:  break-word;
     margin-left: 30px;
 }
-
+.taskTextDone{
+    text-decoration:line-through;
+    width: 350px;
+    font-size: 20px;
+    word-wrap:  break-word;
+    margin-left: 30px;
+}
 .deleteTaskBtton{
     margin-right: 10px;
 

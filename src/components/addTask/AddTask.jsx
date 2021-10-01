@@ -10,21 +10,21 @@ import { timerActions } from "../../store/timerReducer";
 
 
 export const AddTask = () => {
-    
+
     const [toggleTask, usetoggleTask] = useState(true);
-    
+
     const dispatch = useDispatch();
     const inputInfo = useSelector(state => state.addTask.task);
     const taskArr = useSelector(state => state.addTask.arrOfTasks);
     const countOfPomodoros = useSelector(state => state.addTask.incDec);
-    
+
 
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));
     }
 
     const pushTaskButtonHendler = () => {
-        if(inputInfo === "" || countOfPomodoros === 0 ){
+        if (inputInfo === "" || countOfPomodoros === 0) {
 
             return
         };
@@ -43,7 +43,7 @@ export const AddTask = () => {
             )}
 
             {!toggleTask && (
-                
+
                 <div className={styles.addTask}>
                     <div className={styles.taskInputContainer}>
 
@@ -62,7 +62,18 @@ export const AddTask = () => {
 
             <div>
                 {taskArr.map((item) => (
-                    <Task buttonStartTimer={item.buttonStartTimer} checPomodoroProp = {item.pomodoroCheck} key={item.key} taskKey={item.key} items={item.act} countOfPomodoros={item.countOfPomodoros} pomororoTimeProps={item.pomodoroTime}/>
+                    <Task buttonStartTimer={item.buttonStartTimer}
+                        checPomodoroProp={item.pomodoroCheck}
+                        key={item.key}
+                        taskKey={item.key}
+                        items={item.act}
+                        countOfPomodoros={item.countOfPomodoros}
+                        pomororoTimeProps={item.pomodoroTime}
+                        propsdonePomodoros={item.donePomodoros}
+                        propTaskiIsDone = {item.taskIsDone}
+                        propskipTimer = {item.taskState}
+
+                    />
                 ))}
             </div>
 

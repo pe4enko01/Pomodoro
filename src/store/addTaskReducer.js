@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const addTaskReducer = createSlice({
     name: 'addTask',
-    initialState: { task: "", arrOfTasks: [], incDec: 1, pomodoroCheck: false, pomodoroTime: 1500, buttonStartTimer: false },
+    initialState: { task: "", arrOfTasks: [], incDec: 1, pomodoroCheck: false, 
+    pomodoroTime: 1500, buttonStartTimer: false, donePomodoros: 0, taskIsDone:false, taskState: "none" },
+
     reducers: {
         addTask(state, action) {
             state.task = action.payload;
@@ -15,7 +17,10 @@ const addTaskReducer = createSlice({
             const pomodoroCheck = false;
             const pomodoroTime = 1500;
             const buttonStartTimer = false;
-            state.arrOfTasks.push({ buttonStartTimer, act, countOfPomodoros, pomodoroCheck, pomodoroTime, key });
+            const donePomodoros = state.donePomodoros;
+            const taskIsDone = state.taskIsDone;
+            const taskState = state.taskState;
+            state.arrOfTasks.push({ buttonStartTimer, act, countOfPomodoros, pomodoroCheck, pomodoroTime, donePomodoros,taskIsDone, taskState, key });
 
         },
 
@@ -32,6 +37,34 @@ const addTaskReducer = createSlice({
             //         return { ...item }
             //     }
             // );
+        },
+        pomodoroCheckToFalse(state){
+            state.arrOfTasks = state.arrOfTasks.map(
+                item => {
+                    if (item.pomodoroCheck === true) {
+                        item.buttonStartTimer = false;
+                        return { ...item }
+                    } else {
+                        return { ...item }
+                    }
+                }
+            )
+        },
+        incdonePomodoros(state, action) {
+            state.donePomodoros = state.donePomodoros + 1;
+        },
+
+        donePomodorosAddToArr(state) {
+            state.arrOfTasks = state.arrOfTasks.map(
+                item => {
+                    if (item.pomodoroCheck === true) {
+                        item.donePomodoros = item.donePomodoros + 1;
+                        return { ...item }
+                    } else {
+                        return { ...item }
+                    }
+                }
+            )
         },
 
         incPomodoro(state, action) {
@@ -54,7 +87,21 @@ const addTaskReducer = createSlice({
                         return { ...item }
                     } else {
                         item.buttonStartTimer = false;
-                        
+
+                        item.pomodoroCheck = false;
+                        return { ...item }
+                    }
+                }
+            );
+
+        },
+        uncheckPomodor(state, action) {
+            state.arrOfTasks = state.arrOfTasks.map(
+                item => {
+                    if (item.key === action.payload && item.pomodoroCheck === false) {
+                        return { ...item }
+                    } else {
+                        item.buttonStartTimer = false;
                         item.pomodoroCheck = false;
                         return { ...item }
                     }
@@ -82,6 +129,50 @@ const addTaskReducer = createSlice({
 
             );
         },
+
+        taskIsDone(state){
+            state.arrOfTasks = state.arrOfTasks.map(
+                (item, i) => {
+                    if (item.pomodoroCheck === true) {
+                        item.taskIsDone = true;
+                        return { ...item }
+                    } else {
+                        
+                        return { ...item }
+                    }
+                }
+
+            );
+        },
+        skipTimer(state){
+            state.arrOfTasks = state.arrOfTasks.map(
+                (item, i) => {
+                    if (item.pomodoroCheck === true ) {
+                        item.taskState = "Breake";
+                        return { ...item }
+                    } else {
+                        item.taskState = "Pomodoro";
+                        return { ...item }
+                    }
+                }
+
+            );
+        },
+        setPonodoroOnState(state){
+            state.arrOfTasks = state.arrOfTasks.map(
+                (item, i) => {
+                    if (item.pomodoroCheck === true) {
+                        item.taskState = "Pomodoro";
+                        return { ...item }
+                    } else {
+                        item.taskState = "Pomodoro";
+                        return { ...item }
+                    }
+                }
+
+            );
+        },
+
 
 
 

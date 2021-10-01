@@ -4,15 +4,17 @@ import { timerActions } from "../../store/timerReducer";
 import { useSelector } from "react-redux";
 import { addTaskActions } from '../../store/addTaskReducer';
 
+
 import styles from './StartStopButton.module.css';
 
 export const StartStopButton = () => {
 
     const dispatch = useDispatch();
     const startButtonInfo = useSelector(state=> state.timer.startButtonInfo);
+    const arrOfTasks  = useSelector(state=> state.addTask.arrOfTasks);
 
     const startStopHendlerProps = () => {
-        dispatch(timerActions.toggle());
+        dispatch(timerActions.toggle(arrOfTasks));
         dispatch(timerActions.showButtonInfo());
         dispatch(addTaskActions.buttonStartTimerToggle());
         

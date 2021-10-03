@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const addTaskReducer = createSlice({
     name: 'addTask',
     initialState: { task: "", arrOfTasks: [], incDec: 1, pomodoroCheck: false, 
-    pomodoroTime: 1500, buttonStartTimer: false, donePomodoros: 0, taskIsDone:false, taskState: "none" },
+    pomodoroTime: 1500, buttonStartTimer: false, donePomodoros: 0, taskIsDone:false, taskState: "Pomodoro" },
 
     reducers: {
         addTask(state, action) {
@@ -120,6 +120,20 @@ const addTaskReducer = createSlice({
                 (item, i) => {
                     if (item.pomodoroCheck === true) {
                         item.buttonStartTimer = !item.buttonStartTimer;
+                        return { ...item }
+                    } else {
+                        item.buttonStartTimer = false;
+                        return { ...item }
+                    }
+                }
+
+            );
+        },
+        buttonStartTimerToFalse(state) {
+            state.arrOfTasks = state.arrOfTasks.map(
+                (item, i) => {
+                    if (item.pomodoroCheck === true) {
+                        item.buttonStartTimer = false;
                         return { ...item }
                     } else {
                         item.buttonStartTimer = false;

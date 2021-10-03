@@ -26,18 +26,15 @@ export const TimerComponent = () => {
         dispatch(timerActions.selectBreackMode());
     }
     const skipTimerHendler = () => {
-        dispatch(addTaskActions.skipTimer());   
+        dispatch(addTaskActions.skipTimer());
     }
     const PomodoroTimerHendler = () => {
-        if(stateOfPomodoroSkipStateButton == "Pomodoro"){
+        
+        if (stateOfPomodoroSkipStateButton == "none") {
             dispatch(addTaskActions.skipTimer());
-        }else if(stateOfPomodoroSkipStateButton == "Breake"){
-            dispatch(addTaskActions.setPonodoroOnState());   
-        }else if(stateOfPomodoroSkipStateButton == "none"){
-            dispatch(addTaskActions.skipTimer());   
         }
-        else if(stateOfPomodoroSkipStateButton == "none2"){
-            dispatch(addTaskActions.setPonodoroOnState()); 
+        else if (stateOfPomodoroSkipStateButton == "none2") {
+            dispatch(addTaskActions.setPonodoroOnState());
         }
     }
 
@@ -60,7 +57,7 @@ export const TimerComponent = () => {
             <ShowTime className={styles.timer} timer={time} ></ShowTime>
             <StartStopButton className={styles.button}></StartStopButton>
             <button className={styles.skipButtonClass} onClick={PomodoroTimerHendler}>П</button>
-           
+
         </div>
     )
 }

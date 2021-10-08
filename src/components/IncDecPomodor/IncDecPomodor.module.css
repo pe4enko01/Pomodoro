@@ -8,8 +8,8 @@
 
 }
 .incdecScreen{
-    border: 1px solid rgb(185, 176, 176);
-    background-color: rgb(212, 203, 203) ;
+    border: 1px solid var(--white);
+    background-color: var(--white);
     width: 50px;
     height: 30px;
     border-radius: 5px;

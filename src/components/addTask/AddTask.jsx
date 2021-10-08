@@ -17,6 +17,7 @@ export const AddTask = () => {
     const inputInfo = useSelector(state => state.addTask.task);
     const taskArr = useSelector(state => state.addTask.arrOfTasks);
     const countOfPomodoros = useSelector(state => state.addTask.incDec);
+    const [recomend, recomendChange] = useState(false);
 
 
     const addTaskHendler = (e) => {
@@ -24,25 +25,31 @@ export const AddTask = () => {
     }
 
     const pushTaskButtonHendler = () => {
-        if (inputInfo === "" || countOfPomodoros === 0) {
-
+        if (inputInfo === "") {
+            recomendChange(true);
             return
         };
+        recomendChange(false);
         dispatch(addTaskActions.addTaskToArr({ inputInfo: inputInfo, countOfPomodoros: countOfPomodoros }));
         dispatch(addTaskActions.addTask(""));
         dispatch(addTaskActions.clearPomodoroCounter());
+
+
     }
 
+    const deleteAllTaskHendler = () =>{
+        dispatch(addTaskActions.deleteAllTasks());
+    }
     return (
         <div className={styles.taskContainer}>
 
-            {toggleTask && (
+            {!toggleTask && (
                 <div onClick={() => (usetoggleTask(!toggleTask))} className={styles.closeaTask}>
                     Добавить задачу {toggleTask}
                 </div>
             )}
 
-            {!toggleTask && (
+            {toggleTask && (
 
                 <div className={styles.addTask}>
                     <div className={styles.taskInputContainer}>
@@ -53,8 +60,10 @@ export const AddTask = () => {
                     </div>
 
                     <div className={styles.addTaskFotter}>
+                        {recomend && (<div className={ styles.recomend}>Введите задачу</div>)}
                         <button className={styles.inputButton} onClick={pushTaskButtonHendler}>Сохранить</button>
-                        <button className={styles.cancelTaskButton} onClick={() => (usetoggleTask(!toggleTask))}>Отмена</button>
+                        {/* <button className={styles.cancelTaskButton} onClick={() => (usetoggleTask(!toggleTask))}>Отмена</button> */}
+                        <button className={styles.cancelTaskButton} onClick={() => (deleteAllTaskHendler())} >Удалить все</button>
                     </div>
                 </div>
             )}

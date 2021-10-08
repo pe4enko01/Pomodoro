@@ -1,29 +1,28 @@
 .addTask {
-    margin-top: 30px;
-    width: 600px;
-    height: 200px;
+    margin-top: 20px;
+    width: 550px;
+    height: 170px;
 
-    background-color: rgb(175, 75, 75);
+    background-color: rgba(0, 0, 0, 0.3);
 
-    border: 0px solid white;
+    border: 0px solid var(--white);
     border-radius: 10px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-
 }
 
 .closeaTask {
-    margin-top: 30px;
-    width: 600px;
+    margin-top: 20px;
+    width: 550px;
     height: 100px;
 
-    background-color: white;
-    opacity: 0.8;
-    border: 0px solid white;
+    background-color: var(--dark_gray);
+   
     border-radius: 10px;
+    color: var(--white);
 
     display: flex;
     flex-direction: row;
@@ -38,26 +37,25 @@
 }
 
 .inputTask {
-    background-color: rgb(175, 75, 75);
-    color:white;
+    background-color: rgba(0, 0, 0, 0);
+    color:var(--white);
     font-size: 20px;
     display: block;
     outline: none;
     border: 0px;
 }
 .inputTask::placeholder {
-    color:white;
+    color:var(--white);
 }
 
 .cancelTaskButton {
     display: block;
-
     width: 80;
     height: 40px;
-    background-color: #8f8f8f;
+    background-color: var(--gray);
     /* Green */
     border: none;
-    color: white;
+    color: var(--white);
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -67,16 +65,16 @@
     /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: #8f8f8f;
-    color: white;
-    border: 2px solid #8f8f8f;
+    background-color:  var(--gray);
+    color: var(--white);
+    border: 2px solid  var(--gray);
     border-radius: 10px;
 }
 
 .cancelTaskButton:hover {
-    background-color: #4b4a4a;
-    border: 2px solid #4b4a4a;
-    color: white;
+    background-color: var(--dark_gray);
+    border: 2px solid var(--dark_gray);
+    color: var(--white);
 }
 
 
@@ -85,10 +83,10 @@
 
     width: 80;
     height: 40px;
-    background-color: #8f8f8f;
+    background-color:  var(--gray);
     /* Green */
     border: none;
-    color: white;
+    color: var(--white);
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -98,21 +96,21 @@
     /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: #8f8f8f;
-    color: white;
-    border: 2px solid #8f8f8f;
+    background-color:  var(--gray);
+    color: var(--white);
+    border: 2px solid  var(--gray);
     border-radius: 10px;
 
 }
 
 .inputButton:hover {
-    background-color: #4b4a4a;
-    border: 2px solid #4b4a4a;
-    color: white;
+    background-color: var(--dark_gray);
+    border: 2px solid var(--dark_gray);
+    color: var(--white);
 }
 
 .addTaskFotter {
-    background: #464444;
+    background: var(--dark_gray);
     width: 100%;
     border-radius: 0px 0 10px 10px;
     display: flex;
@@ -121,11 +119,17 @@
 
 }
 .taskInputContainer{
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 30px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
     
+}
+
+.recomend{
+    color:var(--white);
+    margin-right: 180px;
+    margin-top: 10px;
 }

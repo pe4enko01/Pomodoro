@@ -28,16 +28,6 @@ const addTaskReducer = createSlice({
             state.arrOfTasks = state.arrOfTasks.filter(item => item.key !== action.payload);
         },
 
-        checkFirstElement(state) {
-
-            // state.arrOfTasks = state.arrOfTasks.map(
-            //     (item, i) => {
-            //         item.buttonStartTimer = false;
-            //         item.pomodoroCheck = false;
-            //         return { ...item }
-            //     }
-            // );
-        },
         pomodoroCheckToFalse(state){
             state.arrOfTasks = state.arrOfTasks.map(
                 item => {
@@ -72,7 +62,7 @@ const addTaskReducer = createSlice({
         },
 
         decPomodoro(state, action) {
-            if (state.incDec > 0) {
+            if (state.incDec > 1) {
                 state.incDec = state.incDec - 1;
             }
         },
@@ -186,6 +176,9 @@ const addTaskReducer = createSlice({
 
             );
         },
+        deleteAllTasks(state){
+            state.arrOfTasks = state.arrOfTasks.filter(item => item.key == "2222");
+        }
 
 
 

@@ -51,7 +51,7 @@ const timerReducer = createSlice({
         },
         checkStateOfPomodoroSkipState(state, action){
             state.checkStateOfPomodoroSkipStateButton = action.payload;
-        }
+        },
 
     }
 })

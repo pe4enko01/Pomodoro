@@ -3,18 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addTaskActions } from '../../store/addTaskReducer';
 import { timerActions } from "../../store/timerReducer";
 
+import useSound from 'use-sound';
+import boopSfx from '../Task/sm-music-harp-1.mp3';
+
 import styles from './Task.module.css';
 
 export const Task = (props) => {
     const dispatch = useDispatch();
-    const [time, setComponentTimer] = useState(500);
+    const [time, setComponentTimer] = useState(1500);
 
     const changeTimer = props.buttonStartTimer;
     const pomodoroMode = useSelector(state => state.timer.pomodoroBreakState);
     //const fdfs = useSelector(state => state.timer.pomodoroBreakState);
 
     const skipTimer = props.propskipTimer;
+
     const stateOfPomodoroSkipStateButton = useSelector(state => state.timer.checkStateOfPomodoroSkipStateButton);
+    const [play] = useSound(boopSfx);
+
+
 
 
 
@@ -33,11 +40,11 @@ export const Task = (props) => {
                         dispatch(timerActions.setTimer(300))
                         setComponentTimer(300);
                         dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
-                        //dispatch(addTaskActions.setPonodoroOnState()); 
                         dispatch(timerActions.setStart());
                         dispatch(addTaskActions.buttonStartTimerToFalse());
+                        dispatch(timerActions.togglestartStopButton());
+
                     } else if (skipTimer == "Pomodoro" && stateOfPomodoroSkipStateButton == "none2") {
-                        console.log("fdsfsdfsdf");
                         dispatch(timerActions.setStart());
                         dispatch(timerActions.selectPomodoroMode());
                         dispatch(timerActions.setTimer(1500));
@@ -45,12 +52,13 @@ export const Task = (props) => {
                         //dispatch(addTaskActions.donePomodorosAddToArr());
                         setComponentTimer(1500);
                         dispatch(addTaskActions.pomodoroCheckToFalse());
-                        if (props.propsdonePomodoros + 1 == props.countOfPomodoros) {
-                            dispatch(addTaskActions.taskIsDone());
-                            dispatch(addTaskActions.checkPomodor(props.taskKey));
-                        };
                         dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
                         dispatch(addTaskActions.buttonStartTimerToFalse());
+                        if (props.propsdonePomodoros + 1 == props.countOfPomodoros) {
+                            dispatch(addTaskActions.taskIsDone());
+                            dispatch(addTaskActions.uncheckPomodor(props.taskKey));
+                        };
+
                     }
                 };
 
@@ -60,6 +68,10 @@ export const Task = (props) => {
                     dispatch(timerActions.selectBreackMode());
                     dispatch(addTaskActions.buttonStartTimerToggle());
                     dispatch(timerActions.setStart());
+                    dispatch(timerActions.togglestartStopButton());
+
+                    play();
+
                 };
                 if (time === 0 && pomodoroMode === false) {
                     dispatch(timerActions.setStart());
@@ -73,6 +85,8 @@ export const Task = (props) => {
                         dispatch(addTaskActions.taskIsDone());
                         dispatch(addTaskActions.checkPomodor(props.taskKey));
                     };
+                    dispatch(timerActions.togglestartStopButton());
+                    play();
                     clearTimeout(interval)
 
                 };
@@ -82,16 +96,16 @@ export const Task = (props) => {
         }
 
         else if (changeTimer === false && skipTimer == "Breake" && stateOfPomodoroSkipStateButton === "none") {
-            console.log("LOLOLO");
+
             dispatch(timerActions.selectBreackMode());
             dispatch(timerActions.setTimer(300))
             setComponentTimer(300);
             dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
-            console.log(stateOfPomodoroSkipStateButton);
             //dispatch(addTaskActions.setPonodoroOnState()); 
             dispatch(timerActions.setStart());
 
             dispatch(addTaskActions.buttonStartTimerToFalse());
+            dispatch(timerActions.togglestartStopButton());
             clearTimeout(interval);
         }
         else if (changeTimer === false && skipTimer == "Pomodoro" && stateOfPomodoroSkipStateButton === "none2") {
@@ -104,14 +118,13 @@ export const Task = (props) => {
             dispatch(addTaskActions.pomodoroCheckToFalse());
             if (props.propsdonePomodoros + 1 == props.countOfPomodoros) {
                 dispatch(addTaskActions.taskIsDone());
-                dispatch(addTaskActions.checkPomodor(props.taskKey));
+                dispatch(addTaskActions.uncheckPomodor(props.taskKey));
             };
-            
+            dispatch(timerActions.togglestartStopButton());
             //console.log(stateOfPomodoroSkipStateButton);
             dispatch(addTaskActions.buttonStartTimerToFalse());
             dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
-            console.log(skipTimer);
-            console.log(stateOfPomodoroSkipStateButton);
+
 
             clearTimeout(interval);
         }
@@ -130,7 +143,7 @@ export const Task = (props) => {
         dispatch(addTaskActions.deleteTask(props.taskKey));
         dispatch(timerActions.setStart());
         dispatch(timerActions.setTimer(1500));
-        dispatch(addTaskActions.checkFirstElement());
+        dispatch(timerActions.selectPomodoroMode());
     };
 
     const startButtonInfo = useSelector(state => state.timer.startButtonInfo);

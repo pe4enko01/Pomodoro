@@ -17,6 +17,8 @@ export const TimerComponent = () => {
     // dispatch(timerActions.setTimer(timeOfPomodoro));
     const time = useSelector(state => state.timer.time);
     const skipOnButton = useSelector(state => state.addTask.taskState);
+    const taskState = useSelector(state => state.timer.pomodoroBreakState);
+
 
     const selectPomodoroMod = () => {
         dispatch(timerActions.selectPomodoroMode());
@@ -29,7 +31,7 @@ export const TimerComponent = () => {
         dispatch(addTaskActions.skipTimer());
     }
     const PomodoroTimerHendler = () => {
-        
+
         if (stateOfPomodoroSkipStateButton == "none") {
             dispatch(addTaskActions.skipTimer());
         }
@@ -51,12 +53,14 @@ export const TimerComponent = () => {
     return (
         <div className={styles.mainTimeBlock}>
             <div className={styles.pomodoroBreakeButtonsContainer}>
-                <button className={styles.pomodorocheckButton} onClick={selectPomodoroMod}>Помодоро</button>
-                <button className={styles.breakecheckButton} onClick={selectBreackMod}>Перерыв</button>
+                <div className={taskState === true ? styles.pomodorocheckButton : "none"} >Помодоро</div>
+                <div className={taskState === false ? styles.breakecheckButton : "none"}  >Перерыв</div>
             </div>
             <ShowTime className={styles.timer} timer={time} ></ShowTime>
-            <StartStopButton className={styles.button}></StartStopButton>
-            <button className={styles.skipButtonClass} onClick={PomodoroTimerHendler}>П</button>
+            <div className={styles.StartButtonAndSkippButtonContainer}>
+                <StartStopButton ></StartStopButton>
+                <button className={styles.skipButtonClass} onClick={PomodoroTimerHendler}>▶▶</button>
+            </div>
 
         </div>
     )

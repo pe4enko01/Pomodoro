@@ -9,9 +9,9 @@ export const ShowTime = () => {
 
     return (
         <div className={styles.timer}>
-            {(timer / 60 % 60) > 9 ? Math.floor(timer / 60 % 60) : `${"0" + Math.floor(timer / 60 % 60)}`}
+            {(timer / 60 % 60) > 10 ? Math.floor(timer / 60 % 60) : `${"0" + Math.floor(timer / 60 % 60)}`}
             :
-            {(timer % 60) > 9 ? Math.floor(timer % 60) : `${"0" + Math.floor(timer % 60)}`}
+            {(timer % 60) > 10 ? Math.floor(timer % 60) : `${"0" + Math.floor(timer % 60)}`}
         </div>
     )
 }

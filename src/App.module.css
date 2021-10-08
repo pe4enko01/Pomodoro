@@ -1,3 +1,15 @@
+:root {
+  --white: white;
+  --black: black;
+  --light_red: rgb(175, 75, 75);
+  --light_gray: rgb(219, 219, 219);
+  --gray: rgb(156, 154, 154);
+  --dark_gray: #464444;
+
+
+
+}
+
 .App{
   min-height: 1000px;
 
@@ -9,7 +21,7 @@
 }
 .AppBreake{
   min-height: 1000px;
-  background-color: rgb(14, 110, 38);
+  background-color: rgb(163, 221, 156);
   display: flex;
   /* //justify-content: center; */
   flex-direction: column;

@@ -34,11 +34,20 @@ export const AddTask = () => {
         dispatch(addTaskActions.addTask(""));
         dispatch(addTaskActions.clearPomodoroCounter());
 
+        const newTaskArr = taskArr.filter(item => item.pomodoroCheck === true);
+        if(newTaskArr.length === 1){
+            if(newTaskArr[0].taskState === "Pomodoro"){
+                dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
+            }else if(newTaskArr[0].taskState === "Breake"){
+                dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
+            }
+        }
 
     }
 
     const deleteAllTaskHendler = () =>{
         dispatch(addTaskActions.deleteAllTasks());
+        //dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
     }
     return (
         <div className={styles.taskContainer}>

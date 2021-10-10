@@ -33,10 +33,11 @@ export const TimerComponent = () => {
     const PomodoroTimerHendler = () => {
 
         if (stateOfPomodoroSkipStateButton == "none") {
-            dispatch(addTaskActions.skipTimer());
+            dispatch(addTaskActions.setBreakeClickTask());
+            
         }
         else if (stateOfPomodoroSkipStateButton == "none2") {
-            dispatch(addTaskActions.setPonodoroOnState());
+            dispatch(addTaskActions.setPonodoroClickTask());
         }
     }
 

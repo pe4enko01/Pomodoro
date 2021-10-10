@@ -4,8 +4,6 @@ import { timerActions } from "../../store/timerReducer";
 import { useSelector } from "react-redux";
 import { addTaskActions } from '../../store/addTaskReducer';
 
-import useSound from 'use-sound';
-import boopSfx from '../Task/sm-music-harp-1.mp3';
 
 
 import styles from './StartStopButton.module.css';

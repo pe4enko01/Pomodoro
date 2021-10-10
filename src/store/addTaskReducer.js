@@ -148,28 +148,28 @@ const addTaskReducer = createSlice({
 
             );
         },
-        skipTimer(state){
-            state.arrOfTasks = state.arrOfTasks.map(
-                (item, i) => {
-                    if (item.pomodoroCheck === true ) {
-                        item.taskState = "Breake";
-                        return { ...item }
-                    } else {
-                        item.taskState = "Pomodoro";
-                        return { ...item }
-                    }
-                }
 
-            );
-        },
-        setPonodoroOnState(state){
+
+        setPonodoroClickTask(state){
             state.arrOfTasks = state.arrOfTasks.map(
                 (item, i) => {
                     if (item.pomodoroCheck === true) {
                         item.taskState = "Pomodoro";
                         return { ...item }
                     } else {
-                        item.taskState = "Pomodoro";
+                        return { ...item }
+                    }
+                }
+
+            );
+        },
+        setBreakeClickTask(state){
+            state.arrOfTasks = state.arrOfTasks.map(
+                (item, i) => {
+                    if (item.pomodoroCheck === true) {
+                        item.taskState = "Breake";
+                        return { ...item }
+                    } else {
                         return { ...item }
                     }
                 }

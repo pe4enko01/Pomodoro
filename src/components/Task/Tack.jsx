@@ -37,14 +37,18 @@ export const Task = (props) => {
                     dispatch(timerActions.setTimer(time));
                     if (skipTimer == "Breake" && stateOfPomodoroSkipStateButton == "none") {
                         dispatch(timerActions.selectBreackMode());
-                        dispatch(timerActions.setTimer(300))
+                        dispatch(timerActions.setTimer(300));
                         setComponentTimer(300);
                         dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
                         dispatch(timerActions.setStart());
                         dispatch(addTaskActions.buttonStartTimerToFalse());
                         dispatch(timerActions.togglestartStopButton());
 
+                        console.log(skipTimer);
+                    console.log(stateOfPomodoroSkipStateButton);
+
                     } else if (skipTimer == "Pomodoro" && stateOfPomodoroSkipStateButton == "none2") {
+                        console.log("LOL1");
                         dispatch(timerActions.setStart());
                         dispatch(timerActions.selectPomodoroMode());
                         dispatch(timerActions.setTimer(1500));
@@ -70,10 +74,18 @@ export const Task = (props) => {
                     dispatch(timerActions.setStart());
                     dispatch(timerActions.togglestartStopButton());
 
+                    dispatch(addTaskActions.setBreakeClickTask());
+                    dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
+
+                    console.log(skipTimer);
+                    console.log(stateOfPomodoroSkipStateButton);
+                    
+
                     play();
 
                 };
                 if (time === 0 && pomodoroMode === false) {
+                    console.log("LOL2");
                     dispatch(timerActions.setStart());
                     dispatch(timerActions.selectPomodoroMode());
                     dispatch(timerActions.setTimer(1500));
@@ -81,13 +93,18 @@ export const Task = (props) => {
                     dispatch(addTaskActions.donePomodorosAddToArr());
                     setComponentTimer(1500);
                     dispatch(addTaskActions.pomodoroCheckToFalse());
+                    
                     if (props.propsdonePomodoros + 1 == props.countOfPomodoros) {
                         dispatch(addTaskActions.taskIsDone());
                         dispatch(addTaskActions.checkPomodor(props.taskKey));
                     };
                     dispatch(timerActions.togglestartStopButton());
+
+                    dispatch(addTaskActions.setPonodoroClickTask());
+                    dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
+
                     play();
-                    clearTimeout(interval)
+                    clearTimeout(interval);
 
                 };
                 //clearTimeout(interval)
@@ -109,6 +126,8 @@ export const Task = (props) => {
             clearTimeout(interval);
         }
         else if (changeTimer === false && skipTimer == "Pomodoro" && stateOfPomodoroSkipStateButton === "none2") {
+            console.log(skipTimer);
+            console.log(stateOfPomodoroSkipStateButton);
             dispatch(timerActions.setStart());
             dispatch(timerActions.selectPomodoroMode());
             dispatch(timerActions.setTimer(1500));
@@ -121,16 +140,13 @@ export const Task = (props) => {
                 dispatch(addTaskActions.uncheckPomodor(props.taskKey));
             };
             dispatch(timerActions.togglestartStopButton());
-            //console.log(stateOfPomodoroSkipStateButton);
             dispatch(addTaskActions.buttonStartTimerToFalse());
-            dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
 
+            dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
 
             clearTimeout(interval);
         }
-        // else if (changeTimer === false && skipTimer == "Pomodoro") {
-        //     clearTimeout(interval);
-        // }
+       
 
 
 
@@ -146,12 +162,22 @@ export const Task = (props) => {
         dispatch(timerActions.selectPomodoroMode());
     };
 
-    const startButtonInfo = useSelector(state => state.timer.startButtonInfo);
     const checkPomodoroHendler = () => {
         dispatch(timerActions.toggleStartButtonfromTask(props.checPomodoroProp));
         dispatch(timerActions.showButtonInfo());
         dispatch(addTaskActions.checkPomodor(props.taskKey));
         dispatch(timerActions.setTimer(time));
+        if(props.propskipTimer === "Pomodoro"){
+            //dispatch(addTaskActions.setPonodoroClickTask());
+            dispatch(timerActions.selectPomodoroMode());
+            dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
+        };
+        if(props.propskipTimer === "Breake"){
+            //dispatch(addTaskActions.setBreakeClickTask());
+            dispatch(timerActions.selectBreackMode());
+            dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
+        }
+        
     };
 
     return (

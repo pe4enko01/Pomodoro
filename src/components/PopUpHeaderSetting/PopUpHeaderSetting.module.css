@@ -1,6 +1,6 @@
-.popUpContent{
-    
+.popUpContent{   
     margin-top: 40px;
+    padding-top: 30px;
 
     width: 350px;
     height:600px;
@@ -9,6 +9,9 @@
 
     border-radius: 3px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .popUp{
     position: fixed;
@@ -20,8 +23,7 @@
 
     display: flex;
     flex-direction: row;
-    justify-content:center;
-        
+    justify-content:center;      
 }
 
 .popUpClose{
@@ -31,6 +33,101 @@
     left: 0%;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.6); 
+}
+
+
+.popUpContentHeader{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 30px;
+}
+
+/* Стили Настройки Таймера */
+
+.popUpContentTimeSetUp{
+    width: 300px;
+    height: 100px;
+    border-top: 1px solid var(--light_gray);
+    border-bottom: 1px solid var(--light_gray);
+}
+.popUpContentTimeSetUpInputs{
+    margin-top: 13px;
+    display: flex;
+}
+
+.popUpContentTimeSetUpInputOfPomodoro{
+    display: flex;
+    flex-direction: column;
+
+    margin-right: 30px; 
+}
+.popUpContentTimeSetUpInputOfPomodoro input{
+    border-radius:3px;
+    border:0px solid var(--light_gray);
+    background-color:var(--light_gray);
+
+    outline: none;
+    height: 20px;
+    width: 40px;
+}
+
+.popUpContentTimeSetUpInputOfPomodoro input::placeholder{
+    color:var(--black)
+}
+
+.popUpContentTimeSetUpInputOfBreake{
+    display: flex;
+    flex-direction: column;;
+}
+.popUpContentTimeSetUpInputOfBreake input{
+    height: 20px;
+}
+.popUpContentTimeSetUpInputOfBreake input{
+    border-radius:3px;
+    border:0px solid var(--light_gray);
+    background-color:var(--light_gray);
+
+    outline: none;
+    height: 20px;
+    width: 40px;
+}
+
+.popUpContentTimeSetUpInputOfBreake input::placeholder{
+    color:var(--black)
+}
+
+/* Стили Настройки Звонка */
+
+.popUpContentAlarmInputs{
+    width: 50px;
+    height: 20px;
+    border: 1px solid var(--light_gray);
+    background-color: var(--light_gray);
+}
+
+.popUpContentAlarmVar{
+    width: 50px;
+    height: 20px;
+    border: 1px solid var(--light_gray);
+    background-color: var(--light_gray);
+}
+.popUpContentAlarmVar:hover{
+    width: 50px;
+    height: 20px;
+    border: 1px solid var(--dark_gray);
+    background-color: var(--dark_gray);
+}
+
+.popUpContentAlarmSetUp{
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
     
+
+
 }

@@ -9,8 +9,10 @@ import boopSfx from '../Task/sm-music-harp-1.mp3';
 import styles from './Task.module.css';
 
 export const Task = (props) => {
+    const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro)) * 60;
+
     const dispatch = useDispatch();
-    const [time, setComponentTimer] = useState(1500);
+    const [time, setComponentTimer] = useState(PomodoroTimer);
 
     const changeTimer = props.buttonStartTimer;
     const pomodoroMode = useSelector(state => state.timer.pomodoroBreakState);

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const timerReducer = createSlice({
     name:'timer',
-    initialState: {time: 1500, startStopButton: false, startButtonInfo: "Старт", pomodoroBreakState: true, checkStateOfPomodoroSkipStateButton:"none"},
+    initialState: {time: 1500, startStopButton: false, startButtonInfo: "Старт", pomodoroBreakState: true, checkStateOfPomodoroSkipStateButton:"none", setTimerOfPomodoro:25,setBreakeOfPomodoro:2},
     reducers: {
         
         setStart(state){
@@ -52,6 +52,12 @@ const timerReducer = createSlice({
         checkStateOfPomodoroSkipState(state, action){
             state.checkStateOfPomodoroSkipStateButton = action.payload;
         },
+        setTimerOfPomodoro(state, action){
+            state.setTimerOfPomodoro = action.payload;
+        },
+        setBreakeTimer(state, action){
+            state.setBreakeOfPomodoro = action.payload;
+        }
 
     }
 })

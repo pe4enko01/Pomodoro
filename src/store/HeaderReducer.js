@@ -10,7 +10,7 @@ const HeaderReducer = createSlice({
         },
         setClosePopUpSettings(state){
             state.openPopUpSettings = false;
-        }
+        },
         
 
     }

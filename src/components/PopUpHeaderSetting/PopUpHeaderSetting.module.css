@@ -45,7 +45,9 @@
     align-items:center;
     margin-bottom: 30px;
 }
-
+.popUpContentExit{
+    cursor: pointer;
+}
 /* Стили Настройки Таймера */
 
 .popUpContentTimeSetUp{

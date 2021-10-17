@@ -11,14 +11,20 @@ import styles from "./Time.module.css";
 
 export const TimerComponent = () => {
 
+    
     const dispatch = useDispatch();
     const stateOfPomodoroSkipStateButton = useSelector(state => state.timer.checkStateOfPomodoroSkipStateButton);
     const timeOfPomodoro = useSelector(state => state.addTask.pomodoroTime);
     // dispatch(timerActions.setTimer(timeOfPomodoro));
+    const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro)) * 60;
     const time = useSelector(state => state.timer.time);
     const skipOnButton = useSelector(state => state.addTask.taskState);
     const taskState = useSelector(state => state.timer.pomodoroBreakState);
-
+    
+    useEffect(() => {
+        dispatch(timerActions.setTimer(PomodoroTimer));
+    },[PomodoroTimer]);
+    // dispatch(timerActions.setTimer(PomodoroTimer));
 
     const selectPomodoroMod = () => {
         dispatch(timerActions.selectPomodoroMode());
@@ -39,6 +45,8 @@ export const TimerComponent = () => {
         else if (stateOfPomodoroSkipStateButton == "none2") {
             dispatch(addTaskActions.setPonodoroClickTask());
         }
+        dispatch(timerActions.changeHelper());
+        
     }
 
     // useEffect(() => {

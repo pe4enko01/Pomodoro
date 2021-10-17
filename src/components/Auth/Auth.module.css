@@ -1,0 +1,59 @@
+.popUpContent{   
+    margin-top: 40px;
+    padding-top: 30px;
+
+    width: 350px;
+    height:600px;
+
+    background-color: var(--white);
+
+    border-radius: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popUp{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+
+    display: flex;
+    flex-direction: row;
+    justify-content:center;      
+}
+
+.popUpClose{
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); 
+}
+
+
+.popUpContentHeader{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    margin-bottom: 30px;
+}
+.popUpContentExit{
+    cursor: pointer;
+}
+
+/* Стили формы */
+.authFormContainer{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

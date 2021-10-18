@@ -23,7 +23,10 @@ const addTaskReducer = createSlice({
             state.arrOfTasks.push({ buttonStartTimer, act, countOfPomodoros, pomodoroCheck, pomodoroTime, donePomodoros,taskIsDone, taskState, key });
 
         },
-
+        addLocalStorageToArr(state, action){
+            const lol = JSON.parse(action.payload)
+            state.arrOfTasks = lol;
+        },
         deleteTask(state, action) {
             state.arrOfTasks = state.arrOfTasks.filter(item => item.key !== action.payload);
         },

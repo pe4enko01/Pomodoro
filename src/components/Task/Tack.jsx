@@ -11,28 +11,36 @@ import boopSfx3 from '../Task/3.mp3';
 import styles from './Task.module.css';
 
 export const Task = (props) => {
+
+
+    
+
+    const arr = useSelector(state => state.addTask.arrOfTasks);
+    
     const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro)) * 60;
     const BreakeTimerSelector = useSelector((state => state.timer.setBreakeOfPomodoro)) * 60;
     const soundCheck = useSelector((state => state.header.soundCheck));
-
+    
     const dispatch = useDispatch();
     const [time, setComponentTimer] = useState(PomodoroTimer);
     const [BreakeTimer, setBreakeTimer] = useState(BreakeTimerSelector);
-
+    
     const changeTimer = props.buttonStartTimer;
     const pomodoroMode = useSelector(state => state.timer.pomodoroBreakState);
     const skipstatic = useSelector(state => state.timer.skipstatic);
-
+    
     //const fdfs = useSelector(state => state.timer.pomodoroBreakState);
-
+    
     const skipTimer = props.propskipTimer;
-
+    
     const stateOfPomodoroSkipStateButton = useSelector(state => state.timer.checkStateOfPomodoroSkipStateButton);
     const [play1] = useSound(boopSfx1);
     const [play2] = useSound(boopSfx2);
     const [play3] = useSound(boopSfx3);
- 
-
+    
+    // const lol = localStorage.getItem('arr');
+    // dispatch(addTaskActions.addLocalStorageToArr(lol));
+    
     useEffect(() => {
         let interval = null;
 
@@ -175,7 +183,9 @@ export const Task = (props) => {
         return () => { clearTimeout(interval) }; //Сброс эффекта
     }, [time, changeTimer, skipTimer, dispatch]);
 
-
+    useEffect(()=>{     
+       localStorage.setItem("arr", JSON.stringify(arr));     
+    },[arr])
 
     const deleteTaskHendler = () => {
         dispatch(addTaskActions.deleteTask(props.taskKey));

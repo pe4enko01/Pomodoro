@@ -26,6 +26,14 @@ export const TimerComponent = () => {
     },[PomodoroTimer]);
     // dispatch(timerActions.setTimer(PomodoroTimer));
 
+   // addLocalStorageToArr
+    
+   
+   useEffect(()=>{     
+       const lol = localStorage.getItem('arr')
+      dispatch(addTaskActions.addLocalStorageToArr(lol))
+    },[]);
+    
     const selectPomodoroMod = () => {
         dispatch(timerActions.selectPomodoroMode());
     }

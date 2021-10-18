@@ -116,10 +116,6 @@ export const PopUpHeaderSetting = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <button>Применить</button>
-                    </div>
-
                 </div>
 
             </div>

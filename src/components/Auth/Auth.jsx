@@ -138,17 +138,20 @@ export const Auth = () => {
                     </div>
 
                     <form className={styles.authFormContainer} onSubmit={submitFormHendler}>
-                        <input type="email" placeholder="Введите логин" ref={emailInputRef} />
+                        <input  className={styles.authFormEmail} type="email" placeholder="Введите логин" ref={emailInputRef} />
 
-                        <input type="text" placeholder="Введите пароль" ref={passwordInputRef} />
+                        <input  className={styles.authFormPassword} type="password" placeholder="Введите пароль" ref={passwordInputRef} />
 
-                        {!isLoading && <button type="submit">Регистрация</button>}
+                        {!isLoading && <button className={styles.authSubmitButton} type="submit">
+                        {!isLogin && <div>Регистрация</div>}
+                        {isLogin && <div>Вход</div>}
+                            </button>}
                         {isLoading && <p>Отправление запроса</p>}
                     </form>
 
-                    {isLogin && <div onClick={ChangeIsLoginHendler}>Зарегистрироваться, если нет аккаунта</div>}
+                    {isLogin && <div className={styles.authFotter} onClick={ChangeIsLoginHendler}>Зарегистрироваться, если нет аккаунта</div>}
 
-                    {!isLogin && <div onClick={ChangeIsLoginHendler}>Войти, если есть аккаунт</div>}
+                    {!isLogin && <div className={styles.authFotter}  onClick={ChangeIsLoginHendler}>Войти, если есть аккаунт</div>}
 
 
                 </div>

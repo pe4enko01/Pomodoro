@@ -3,7 +3,7 @@
     padding-top: 30px;
 
     width: 350px;
-    height:600px;
+    height:300px;
 
     background-color: var(--white);
 
@@ -57,3 +57,50 @@
     align-items: center;
 }
 
+
+.popUpContentH1{
+    font-size: 20px;
+    color:var(--dark_gray);
+}
+
+.authFormEmail{
+    width: 280px;
+    height: 35px;
+
+    outline:none;
+    border: 1px solid var(--light_gray);
+    background-color: var(--light_gray);
+    border-radius:3px;
+
+    margin-bottom: 15px;
+}
+
+.authFormPassword{
+    width: 280px;
+    height: 35px;
+
+    outline:none;
+    border: 1px solid var(--light_gray);
+    background-color: var(--light_gray);
+    border-radius:3px;
+}
+
+.authSubmitButton{
+
+    margin-top: 20px;
+    width: 230px;
+    height: 35px;
+
+    outline:none;
+    border: 1px solid var(--dark_gray);
+    background-color: var(--dark_gray);
+    border-radius:3px;
+
+    color: var(--white);
+    cursor: pointer;
+}
+
+.authFotter{
+    margin-top: 20px;
+    cursor: pointer;
+}

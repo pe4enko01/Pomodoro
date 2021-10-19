@@ -5,6 +5,7 @@ import styles from "./PopUpHeaderSetting.module.css"
 import { HeaderActions } from '../../store/HeaderReducer';
 import userEvent from '@testing-library/user-event';
 import { timerActions } from "../../store/timerReducer";
+import { addTaskActions } from '../../store/addTaskReducer';
 
 
 import useSound from 'use-sound';
@@ -20,6 +21,8 @@ export const PopUpHeaderSetting = () => {
     const [alarmVars, setAlarmVars] = useState(false);
     const dispatch = useDispatch();
     const openPopUpSettings = useSelector(state => state.header.openPopUpSettings);
+
+    const rer = useSelector(state => state.addTask.pomodoroTime);
 
     const soundCheck = useSelector((state => state.header.soundCheck));
     const [play1] = useSound(boopSfx1);
@@ -47,6 +50,10 @@ export const PopUpHeaderSetting = () => {
     };
     const setPomodoroTimerHendler = (e) => {
         dispatch(timerActions.setTimerOfPomodoro(e.target.value));
+        
+        localStorage.setItem("pomodoroTime", e.target.value * 60 );
+        const pomodoroTime = localStorage.getItem("pomodoroTime");
+        dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime));     
     };
     const setBreakeTimerHendler = (e) => {
         dispatch(timerActions.setBreakeTimer(e.target.value));
@@ -56,11 +63,11 @@ export const PopUpHeaderSetting = () => {
         dispatch(HeaderActions.setsoundCheck(e.target.outerText));
         setAlarmVars(!alarmVars);
 
-        if (e.target.outerText == "1") {
+        if (e.target.outerText === "1") {
             play1();
-        } else if (e.target.outerText == "2") {
+        } else if (e.target.outerText === "2") {
             play2();
-        } else if (e.target.outerText == "3") {
+        } else if (e.target.outerText === "3") {
             play3();
         }
 

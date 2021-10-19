@@ -12,13 +12,18 @@ import { timerActions } from "../../store/timerReducer";
 export const AddTask = () => {
 
     const [toggleTask, usetoggleTask] = useState(true);
-
     const dispatch = useDispatch();
     const inputInfo = useSelector(state => state.addTask.task);
     const taskArr = useSelector(state => state.addTask.arrOfTasks);
     const countOfPomodoros = useSelector(state => state.addTask.incDec);
     const [recomend, recomendChange] = useState(false);
 
+    if(localStorage.getItem("pomodoroTime")){
+        let lol = localStorage.getItem("pomodoroTime");
+        dispatch(addTaskActions.setTimerOfPomodoro(lol));
+    }else{
+        dispatch(addTaskActions.setTimerOfPomodoro(1500));
+    }
 
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));
@@ -42,11 +47,11 @@ export const AddTask = () => {
                 dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
             }
         }
-
     }
 
     const deleteAllTaskHendler = () =>{
         dispatch(addTaskActions.deleteAllTasks());
+        localStorage.setItem("arr", '');  
         //dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
     }
     return (

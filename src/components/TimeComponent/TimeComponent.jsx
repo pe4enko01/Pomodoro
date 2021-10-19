@@ -21,17 +21,17 @@ export const TimerComponent = () => {
     const skipOnButton = useSelector(state => state.addTask.taskState);
     const taskState = useSelector(state => state.timer.pomodoroBreakState);
     
-    useEffect(() => {
-        dispatch(timerActions.setTimer(PomodoroTimer));
-    },[PomodoroTimer]);
-    // dispatch(timerActions.setTimer(PomodoroTimer));
+    // useEffect(() => {
+    //     dispatch(timerActions.setTimer(PomodoroTimer));
+    // },[PomodoroTimer]);
 
-   // addLocalStorageToArr
     
-   
+   //Извлечение массива с тасками в localStorage
    useEffect(()=>{     
        const lol = localStorage.getItem('arr')
-      dispatch(addTaskActions.addLocalStorageToArr(lol))
+       if(lol){
+           dispatch(addTaskActions.addLocalStorageToArr(lol))
+       }
     },[]);
     
     const selectPomodoroMod = () => {

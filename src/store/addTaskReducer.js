@@ -15,13 +15,31 @@ const addTaskReducer = createSlice({
             const act = action.payload.inputInfo;
             const countOfPomodoros = action.payload.countOfPomodoros;
             const pomodoroCheck = false;
-            const pomodoroTime = 1500;
+            const pomodoroTime = state.pomodoroTime;
             const buttonStartTimer = false;
             const donePomodoros = state.donePomodoros;
             const taskIsDone = state.taskIsDone;
             const taskState = state.taskState;
             state.arrOfTasks.push({ buttonStartTimer, act, countOfPomodoros, pomodoroCheck, pomodoroTime, donePomodoros,taskIsDone, taskState, key });
 
+        },
+        setPomodoroTime(state, action){
+
+            state.arrOfTasks = state.arrOfTasks.map(
+                item => {
+                    if (item.key === action.payload.key) {
+                        item.pomodoroTime = action.payload.time;
+                        return { ...item }
+                    } else {
+
+                        return { ...item }
+                    }
+                }
+            );
+        },
+        setPomodoroT(state, action){
+            state.pomodoroTime = action.payload;
+           
         },
         addLocalStorageToArr(state, action){
             const lol = JSON.parse(action.payload)

@@ -32,6 +32,11 @@ export const Header = () =>{
         dispatch(timerActions.setTimerOfPomodoro(lol/60));
         //dispatch(addTaskActions.setTimerOfPomodoro(lol));
     }
+    if(localStorage.getItem("BreakeTime")){
+        let lol = localStorage.getItem("BreakeTime");
+        dispatch(timerActions.setBreakeTimer(lol/60));
+        //dispatch(addTaskActions.setTimerOfPomodoro(lol));
+    }
     return(
         <header className={styles.headerMainContainer}>
             <div className={styles.headerLogo}>

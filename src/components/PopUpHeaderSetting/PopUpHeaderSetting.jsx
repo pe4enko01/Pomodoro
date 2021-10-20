@@ -16,7 +16,8 @@ import boopSfx3 from '../Task/3.mp3';
 export const PopUpHeaderSetting = () => {
 
     const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro));
-    const BreakeTimer = useSelector((state => state.timer.setBreakeTimer));
+    const BreakeTimer = useSelector((state => state.timer.setBreakeOfPomodoro));
+    console.log(BreakeTimer);
 
     const [alarmVars, setAlarmVars] = useState(false);
     const dispatch = useDispatch();
@@ -52,12 +53,15 @@ export const PopUpHeaderSetting = () => {
         dispatch(timerActions.setTimerOfPomodoro(e.target.value));
         
         localStorage.setItem("pomodoroTime", e.target.value * 60 );
-        const pomodoroTime = localStorage.getItem("pomodoroTime");
+        // const pomodoroTime = localStorage.getItem("pomodoroTime");
         //dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime));     
     };
     const setBreakeTimerHendler = (e) => {
         dispatch(timerActions.setBreakeTimer(e.target.value));
 
+        localStorage.setItem("BreakeTime", e.target.value * 60 );
+        //const BreakeTime = localStorage.getItem("pomodoroTime");
+        //dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime)); 
 
     };
     const changeSoundHendler = (e) => {
@@ -90,11 +94,11 @@ export const PopUpHeaderSetting = () => {
                         <div className={styles.popUpContentTimeSetUpInputs}>
                             <div className={styles.popUpContentTimeSetUpInputOfPomodoro}>
                                 <div>Помодоро</div>
-                                <input type="text" placeholder="20" value={PomodoroTimer} onChange={setPomodoroTimerHendler} />
+                                <input type="text"  value={PomodoroTimer} onChange={setPomodoroTimerHendler} />
                             </div>
                             <div className={styles.popUpContentTimeSetUpInputOfBreake}>
                                 <div>Перерыв</div>
-                                <input type="text" placeholder="5" value={BreakeTimer} onChange={setBreakeTimerHendler} />
+                                <input type="text"  value={BreakeTimer} onChange={setBreakeTimerHendler} />
                             </div>
                         </div>
                     </div>

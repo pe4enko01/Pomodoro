@@ -24,8 +24,9 @@ export const TimerComponent = () => {
     // useEffect(() => {
     //     dispatch(timerActions.setTimer(PomodoroTimer));
     // },[PomodoroTimer]);
-
-    
+    useEffect(()=>{
+        dispatch(timerActions.setTimer(localStorage.getItem('pomodoroTime')));
+    },[])
    //Извлечение массива с тасками в localStorage
    useEffect(()=>{     
        const lol = localStorage.getItem('arr')

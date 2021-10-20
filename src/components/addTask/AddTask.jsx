@@ -20,10 +20,10 @@ export const AddTask = () => {
 
     if(localStorage.getItem("pomodoroTime")){
         let lol = localStorage.getItem("pomodoroTime");
+        //dispatch(timerActions.setTimerOfPomodoro(lol/60));
         dispatch(addTaskActions.setTimerOfPomodoro(lol));
-    }else{
-        dispatch(addTaskActions.setTimerOfPomodoro(1500));
     }
+
 
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));

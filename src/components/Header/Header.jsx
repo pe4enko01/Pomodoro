@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import {HeaderActions} from '../../store/HeaderReducer';
 import { AuthActions } from '../../store/AuthReducer';
 
+import { timerActions } from '../../store/timerReducer';
+import { addTaskActions } from '../../store/addTaskReducer';
+
 import styles from "./Header.module.css"
 
 export const Header = () =>{
@@ -24,6 +27,11 @@ export const Header = () =>{
        console.log(idToken);
     };
 
+    if(localStorage.getItem("pomodoroTime")){
+        let lol = localStorage.getItem("pomodoroTime");
+        dispatch(timerActions.setTimerOfPomodoro(lol/60));
+        //dispatch(addTaskActions.setTimerOfPomodoro(lol));
+    }
     return(
         <header className={styles.headerMainContainer}>
             <div className={styles.headerLogo}>

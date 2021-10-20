@@ -5,7 +5,7 @@ const timerReducer = createSlice({
     name:'timer',
     initialState: {time: 1500, startStopButton: false, startButtonInfo: "Старт",
      pomodoroBreakState: true, checkStateOfPomodoroSkipStateButton:"none", skipstatic:false,
-      setTimerOfPomodoro:5,setBreakeOfPomodoro:5},
+      setTimerOfPomodoro:25,setBreakeOfPomodoro:5},
     reducers: {
         
         setStart(state){

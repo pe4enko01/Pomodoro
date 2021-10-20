@@ -53,10 +53,12 @@ export const PopUpHeaderSetting = () => {
         
         localStorage.setItem("pomodoroTime", e.target.value * 60 );
         const pomodoroTime = localStorage.getItem("pomodoroTime");
-        dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime));     
+        //dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime));     
     };
     const setBreakeTimerHendler = (e) => {
         dispatch(timerActions.setBreakeTimer(e.target.value));
+
+
     };
     const changeSoundHendler = (e) => {
         // dispatch(timerActions.setBreakeTimer(e.target.value));

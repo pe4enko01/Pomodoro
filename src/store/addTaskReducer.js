@@ -108,6 +108,23 @@ const addTaskReducer = createSlice({
             );
 
         },
+        reCheckPomodor(state, action) {
+            state.arrOfTasks = state.arrOfTasks.map(
+                item => {
+                    if (item.pomodoroCheck === true) {
+                        item.pomodoroCheck = false;
+                        item.pomodoroCheck = false;
+                        item.pomodoroCheck = true;
+                        console.log(item.pomodoroCheck);
+                        return { ...item }
+                    } else {
+                        
+                        return { ...item }
+                    }
+                }
+            );
+
+        },
         uncheckPomodor(state, action) {
             state.arrOfTasks = state.arrOfTasks.map(
                 item => {

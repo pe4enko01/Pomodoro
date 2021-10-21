@@ -14,6 +14,7 @@ export const TimerComponent = () => {
     
     const dispatch = useDispatch();
     const stateOfPomodoroSkipStateButton = useSelector(state => state.timer.checkStateOfPomodoroSkipStateButton);
+    console.log(stateOfPomodoroSkipStateButton);
     const timeOfPomodoro = useSelector(state => state.addTask.pomodoroTime);
     // dispatch(timerActions.setTimer(timeOfPomodoro));
     const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro)) * 60;

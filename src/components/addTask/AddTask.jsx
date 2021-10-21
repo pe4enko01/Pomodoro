@@ -23,7 +23,7 @@ export const AddTask = () => {
         //dispatch(timerActions.setTimerOfPomodoro(lol/60));
         dispatch(addTaskActions.setTimerOfPomodoro(lol));
     }
-    
+
 
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));

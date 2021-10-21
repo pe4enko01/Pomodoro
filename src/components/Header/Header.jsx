@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import {HeaderActions} from '../../store/HeaderReducer';
 import { AuthActions } from '../../store/AuthReducer';
@@ -26,17 +26,32 @@ export const Header = () =>{
        dispatch(AuthActions.setTokenId('none'));
        console.log(idToken);
     };
+    useEffect(()=>{
+        if(localStorage.getItem("pomodoroTime")){
+            let lol = localStorage.getItem("pomodoroTime");
+            dispatch(timerActions.setTimerOfPomodoro(lol/60));
+            //dispatch(addTaskActions.setTimerOfPomodoro(lol));
+        }
+    })
+    useEffect(()=>{
+        if(localStorage.getItem("BreakeTime")){
+            let lol = localStorage.getItem("BreakeTime");
+            dispatch(timerActions.setBreakeTimer(lol/60));
+            //dispatch(addTaskActions.setTimerOfPomodoro(lol));
+        }
+    })
+    useEffect(()=>{
+        if(localStorage.getItem('selectMode')){
+            if(localStorage.getItem('selectMode') === "breake"){
+                dispatch(timerActions.checkStateOfPomodoroSkipState("none2"));
+                dispatch(timerActions.selectBreackMode());
+            }else if(localStorage.getItem('selectMode') === "pomodoro"){
+                dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
+                dispatch(timerActions.selectPomodoroMode());
+            }
+        }
+    });
 
-    if(localStorage.getItem("pomodoroTime")){
-        let lol = localStorage.getItem("pomodoroTime");
-        dispatch(timerActions.setTimerOfPomodoro(lol/60));
-        //dispatch(addTaskActions.setTimerOfPomodoro(lol));
-    }
-    if(localStorage.getItem("BreakeTime")){
-        let lol = localStorage.getItem("BreakeTime");
-        dispatch(timerActions.setBreakeTimer(lol/60));
-        //dispatch(addTaskActions.setTimerOfPomodoro(lol));
-    }
     return(
         <header className={styles.headerMainContainer}>
             <div className={styles.headerLogo}>

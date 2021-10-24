@@ -14,7 +14,7 @@ const addTaskReducer = createSlice({
             const key = Math.random();
             const act = action.payload.inputInfo;
             const countOfPomodoros = action.payload.countOfPomodoros;
-            const pomodoroCheck = false;
+            const pomodoroCheck = action.payload.pomodoroCheck;
             const pomodoroTime = state.pomodoroTime;
             const buttonStartTimer = false;
             const donePomodoros = state.donePomodoros;
@@ -22,6 +22,10 @@ const addTaskReducer = createSlice({
             const taskState = state.taskState;
             state.arrOfTasks.push({ buttonStartTimer, act, countOfPomodoros, pomodoroCheck, pomodoroTime, donePomodoros,taskIsDone, taskState, key });
 
+        },
+        deleteLastElemOfArr(state){
+            state.arrOfTasks = state.arrOfTasks.filter(item => item.act !== "Нет");
+           console.log(state.arrOfTasks);
         },
         setPomodoroTime(state, action){
 

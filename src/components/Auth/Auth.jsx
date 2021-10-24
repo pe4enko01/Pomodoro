@@ -63,7 +63,6 @@ export const Auth = () => {
                 if (totalTime < 0) {
                     dispatch(AuthActions.setTokenId("none"));
                     localStorage.clear();
-                    console.log("totalTime");
                     clearTimeout(timer);
                 }
                 clearTimeout(timer);

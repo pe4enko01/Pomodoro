@@ -51,15 +51,15 @@ export const PopUpHeaderSetting = () => {
     };
     const setPomodoroTimerHendler = (e) => {
         dispatch(timerActions.setTimerOfPomodoro(e.target.value));
-        
-        localStorage.setItem("pomodoroTime", e.target.value * 60 );
+
+        localStorage.setItem("pomodoroTime", e.target.value * 60);
         // const pomodoroTime = localStorage.getItem("pomodoroTime");
         //dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime));     
     };
     const setBreakeTimerHendler = (e) => {
         dispatch(timerActions.setBreakeTimer(e.target.value));
 
-        localStorage.setItem("BreakeTime", e.target.value * 60 );
+        localStorage.setItem("BreakeTime", e.target.value * 60);
         //const BreakeTime = localStorage.getItem("pomodoroTime");
         //dispatch(addTaskActions.setTimerOfPomodoro(pomodoroTime)); 
 
@@ -78,7 +78,22 @@ export const PopUpHeaderSetting = () => {
         }
 
     }
+    const setInfinitTackModHendler = (e) => {
+        if(e.target.checked  === true){
+            dispatch(HeaderActions.setInfinitMod());
+            dispatch(addTaskActions.uncheckPomodor("2"));
+            dispatch(addTaskActions.addTaskToArr({ inputInfo: "Нет", countOfPomodoros: 10000, pomodoroCheck: true }));
+            localStorage.setItem('infinitMod', true);
 
+
+        }else{
+            dispatch(HeaderActions.setNoInfinitMod());
+            dispatch(addTaskActions.uncheckPomodor("2"));
+            dispatch(addTaskActions.deleteLastElemOfArr());      
+            localStorage.setItem('infinitMod', "");
+        }
+
+    }
     return (
         <div>
             <div className={openPopUpSettings ? styles.popUp : styles.popUpClose} onClick={closePopUpHendler}>
@@ -94,11 +109,11 @@ export const PopUpHeaderSetting = () => {
                         <div className={styles.popUpContentTimeSetUpInputs}>
                             <div className={styles.popUpContentTimeSetUpInputOfPomodoro}>
                                 <div>Помодоро</div>
-                                <input type="text"  value={PomodoroTimer} onChange={setPomodoroTimerHendler} />
+                                <input type="text" value={PomodoroTimer} onChange={setPomodoroTimerHendler} />
                             </div>
                             <div className={styles.popUpContentTimeSetUpInputOfBreake}>
                                 <div>Перерыв</div>
-                                <input type="text"  value={BreakeTimer} onChange={setBreakeTimerHendler} />
+                                <input type="text" value={BreakeTimer} onChange={setBreakeTimerHendler} />
                             </div>
                         </div>
                     </div>
@@ -127,6 +142,15 @@ export const PopUpHeaderSetting = () => {
                                 </div>
                             )}
                         </div>
+
+                        {/* <div className={styles.popUpContentInfinitTask}>
+                            <button className={styles.popUpContentInfinitTask} onClick={setInfinitTackModHendler}> ДА </button>
+                            <button className={styles.popUpContentNoInfinitTask}> Нет </button>
+                        </div> */}
+
+                        
+                        <input checked = {(localStorage.getItem("infinitMod")) && "checked"} type="checkbox" class="toggle__input" onClick={setInfinitTackModHendler} />
+                          
                     </div>
 
                 </div>

@@ -16,6 +16,7 @@ import {
 
 function App() {
   const pomodoroMode = useSelector(state => state.timer.pomodoroBreakState);
+  const infinitMode = useSelector((state => state.header.infinitMod));
 
   return (
     <div className={pomodoroMode ? styles.App : styles.AppBreake}>
@@ -24,6 +25,7 @@ function App() {
       <Auth></Auth>
       <TimerComponent />
       <AddTask/>
+
     </div>
   );
 }

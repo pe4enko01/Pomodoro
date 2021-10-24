@@ -7,6 +7,7 @@ import { addTaskActions } from '../../store/addTaskReducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { timerActions } from "../../store/timerReducer";
+import { HeaderActions } from '../../store/HeaderReducer';
 
 
 export const AddTask = () => {
@@ -22,12 +23,14 @@ export const AddTask = () => {
         let lol = localStorage.getItem("pomodoroTime");
         //dispatch(timerActions.setTimerOfPomodoro(lol/60));
         dispatch(addTaskActions.setTimerOfPomodoro(lol));
-    }
-
+    };
+    if(localStorage.getItem("infinitMod")){
+        dispatch(HeaderActions.setInfinitMod());
+    };
 
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));
-    }
+    };
 
     const pushTaskButtonHendler = () => {
         if (inputInfo === "") {
@@ -35,7 +38,7 @@ export const AddTask = () => {
             return
         };
         recomendChange(false);
-        dispatch(addTaskActions.addTaskToArr({ inputInfo: inputInfo, countOfPomodoros: countOfPomodoros }));
+        dispatch(addTaskActions.addTaskToArr({ inputInfo: inputInfo, countOfPomodoros: countOfPomodoros, pomodoroCheck:false }));
         dispatch(addTaskActions.addTask(""));
         dispatch(addTaskActions.clearPomodoroCounter());
 
@@ -47,15 +50,18 @@ export const AddTask = () => {
                 dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
             }
         }
-    }
+    };
 
     const deleteAllTaskHendler = () =>{
         dispatch(addTaskActions.deleteAllTasks());
+        dispatch(timerActions.selectPomodoroMode());
+        localStorage.setItem('selectMode', "pomodoro");
         localStorage.setItem("arr", '');  
-        //dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
-    }
+    };
+    const infinitMode = useSelector((state => state.header.infinitMod));
+    console.log(infinitMode);
     return (
-        <div className={styles.taskContainer}>
+        <div className={infinitMode ? styles.taskContainerNone : styles.taskContainer}>
 
             {!toggleTask && (
                 <div onClick={() => (usetoggleTask(!toggleTask))} className={styles.closeaTask}>

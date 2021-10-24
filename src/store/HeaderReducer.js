@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const HeaderReducer = createSlice({
     name:'header',
-    initialState: {openPopUpSettings: false, openAuth: false, soundCheck:"1"},
+    initialState: {openPopUpSettings: false, openAuth: false, soundCheck:"1",infinitMod: false},
     reducers: {
         setOpenPopUpSettings(state){
             state.openPopUpSettings = true;
@@ -20,7 +20,12 @@ const HeaderReducer = createSlice({
         setsoundCheck(state, action){
             state.soundCheck = action.payload;
         },
-
+        setInfinitMod(state){
+            state.infinitMod = true;
+        },
+        setNoInfinitMod(state){
+            state.infinitMod = false;
+        }
     }
 })
 

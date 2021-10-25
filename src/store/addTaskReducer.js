@@ -25,7 +25,6 @@ const addTaskReducer = createSlice({
         },
         deleteLastElemOfArr(state){
             state.arrOfTasks = state.arrOfTasks.filter(item => item.act !== "Нет");
-           console.log(state.arrOfTasks);
         },
         setPomodoroTime(state, action){
 
@@ -119,7 +118,6 @@ const addTaskReducer = createSlice({
                         item.pomodoroCheck = false;
                         item.pomodoroCheck = false;
                         item.pomodoroCheck = true;
-                        console.log(item.pomodoroCheck);
                         return { ...item }
                     } else {
                         

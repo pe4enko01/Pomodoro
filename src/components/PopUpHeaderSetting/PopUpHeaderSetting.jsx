@@ -17,7 +17,6 @@ export const PopUpHeaderSetting = () => {
 
     const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro));
     const BreakeTimer = useSelector((state => state.timer.setBreakeOfPomodoro));
-    console.log(BreakeTimer);
 
     const [alarmVars, setAlarmVars] = useState(false);
     const dispatch = useDispatch();
@@ -79,17 +78,22 @@ export const PopUpHeaderSetting = () => {
 
     }
     const setInfinitTackModHendler = (e) => {
-        if(e.target.checked  === true){
+        let lol = e.target.parentElement.children[1].checked;
+        //console.log(e.target.parentElement.children[1]);
+        e.target.parentElement.children[1].checked = !lol;
+
+
+        if (e.target.parentElement.children[1].checked === true) {
             dispatch(HeaderActions.setInfinitMod());
             dispatch(addTaskActions.uncheckPomodor("2"));
             dispatch(addTaskActions.addTaskToArr({ inputInfo: "Нет", countOfPomodoros: 10000, pomodoroCheck: true }));
             localStorage.setItem('infinitMod', true);
 
 
-        }else{
+        } else {
             dispatch(HeaderActions.setNoInfinitMod());
             dispatch(addTaskActions.uncheckPomodor("2"));
-            dispatch(addTaskActions.deleteLastElemOfArr());      
+            dispatch(addTaskActions.deleteLastElemOfArr());
             localStorage.setItem('infinitMod', "");
         }
 
@@ -148,9 +152,13 @@ export const PopUpHeaderSetting = () => {
                             <button className={styles.popUpContentNoInfinitTask}> Нет </button>
                         </div> */}
 
-                        
-                        <input checked = {(localStorage.getItem("infinitMod")) && "checked"} type="checkbox" class="toggle__input" onClick={setInfinitTackModHendler} />
-                          
+
+                    </div>
+                    <div className={styles.popUpContentChcketBox} >
+                        <div className={styles.popUpContentHeader}>Бесконечный режим</div>
+                        <input defaultChecked={(localStorage.getItem("infinitMod")) && "checked"}  type="checkbox" className={styles.checkbox}  />
+                        <label onClick={setInfinitTackModHendler}></label>
+                        {/* checked={(localStorage.getItem("infinitMod")) && "checked"} */}
                     </div>
 
                 </div>

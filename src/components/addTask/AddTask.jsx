@@ -17,17 +17,20 @@ export const AddTask = () => {
     const inputInfo = useSelector(state => state.addTask.task);
     const taskArr = useSelector(state => state.addTask.arrOfTasks);
     const countOfPomodoros = useSelector(state => state.addTask.incDec);
+    const PomodoroTimer = useSelector((state => state.timer.setTimerOfPomodoro)) * 60;
     const [recomend, recomendChange] = useState(false);
 
-    if(localStorage.getItem("pomodoroTime")){
-        let lol = localStorage.getItem("pomodoroTime");
-        //dispatch(timerActions.setTimerOfPomodoro(lol/60));
-        dispatch(addTaskActions.setTimerOfPomodoro(lol));
-    };
-    if(localStorage.getItem("infinitMod")){
-        dispatch(HeaderActions.setInfinitMod());
-    };
+    useEffect(() => {
+        if (localStorage.getItem("pomodoroTime")) {
+            let lol = localStorage.getItem("pomodoroTime");
+            //dispatch(timerActions.setTimerOfPomodoro(lol/60));
+            dispatch(addTaskActions.setTimerOfPomodoro(lol));
+        };
+        if (localStorage.getItem("infinitMod")) {
+            dispatch(HeaderActions.setInfinitMod());
+        };
 
+    })
     const addTaskHendler = (e) => {
         dispatch(addTaskActions.addTask(e.target.value));
     };
@@ -38,28 +41,36 @@ export const AddTask = () => {
             return
         };
         recomendChange(false);
-        dispatch(addTaskActions.addTaskToArr({ inputInfo: inputInfo, countOfPomodoros: countOfPomodoros, pomodoroCheck:false }));
+        dispatch(addTaskActions.addTaskToArr({ inputInfo: inputInfo, countOfPomodoros: countOfPomodoros, pomodoroCheck: false }));
         dispatch(addTaskActions.addTask(""));
         dispatch(addTaskActions.clearPomodoroCounter());
 
         const newTaskArr = taskArr.filter(item => item.pomodoroCheck === true);
-        if(newTaskArr.length === 1){
-            if(newTaskArr[0].taskState === "Pomodoro"){
+        if (newTaskArr.length === 1) {
+            if (newTaskArr[0].taskState === "Pomodoro") {
                 dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
-            }else if(newTaskArr[0].taskState === "Breake"){
+            } else if (newTaskArr[0].taskState === "Breake") {
                 dispatch(timerActions.checkStateOfPomodoroSkipState("none"));
             }
         }
     };
 
-    const deleteAllTaskHendler = () =>{
+    const deleteAllTaskHendler = () => {
         dispatch(addTaskActions.deleteAllTasks());
         dispatch(timerActions.selectPomodoroMode());
+
+        if (localStorage.getItem("pomodoroTime")) {
+
+            dispatch(timerActions.setTimer(localStorage.getItem("pomodoroTime")))
+        } else {
+
+            dispatch(timerActions.setTimer(PomodoroTimer));
+        }
         localStorage.setItem('selectMode', "pomodoro");
-        localStorage.setItem("arr", '');  
+        localStorage.setItem("arr", '');
     };
     const infinitMode = useSelector((state => state.header.infinitMod));
-    console.log(infinitMode);
+
     return (
         <div className={infinitMode ? styles.taskContainerNone : styles.taskContainer}>
 
@@ -80,7 +91,7 @@ export const AddTask = () => {
                     </div>
 
                     <div className={styles.addTaskFotter}>
-                        {recomend && (<div className={ styles.recomend}>Введите задачу</div>)}
+                        {recomend && (<div className={styles.recomend}>Введите задачу</div>)}
                         <button className={styles.inputButton} onClick={pushTaskButtonHendler}>Сохранить</button>
                         {/* <button className={styles.cancelTaskButton} onClick={() => (usetoggleTask(!toggleTask))}>Отмена</button> */}
                         <button className={styles.cancelTaskButton} onClick={() => (deleteAllTaskHendler())} >Удалить все</button>
@@ -99,8 +110,8 @@ export const AddTask = () => {
                         countOfPomodoros={item.countOfPomodoros}
                         pomororoTimeProps={item.pomodoroTime}
                         propsdonePomodoros={item.donePomodoros}
-                        propTaskiIsDone = {item.taskIsDone}
-                        propskipTimer = {item.taskState}
+                        propTaskiIsDone={item.taskIsDone}
+                        propskipTimer={item.taskState}
 
                     />
                 ))}

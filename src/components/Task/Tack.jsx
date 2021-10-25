@@ -82,7 +82,6 @@ export const Task = (props) => {
 
                     } else if (skipTimer == "Pomodoro" && stateOfPomodoroSkipStateButton == "none2") {
                         //dispatch(addTaskActions.setPomodoroTime({ key: props.taskKey, time: st }));
-                        console.log("fgdfhtfhfgh");
                         dispatch(timerActions.setStart());
                         dispatch(timerActions.selectPomodoroMode());
                         localStorage.setItem('selectMode', "pomodoro");
@@ -159,7 +158,7 @@ export const Task = (props) => {
                 };
                 //clearTimeout(interval)
             }
-                , 1);
+                , 1000);
         }
 
         else if (changeTimer === false && skipTimer == "Breake" && stateOfPomodoroSkipStateButton === "none" && skipstatic) {

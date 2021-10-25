@@ -24,7 +24,7 @@ export const Header = () =>{
     const signOutHendler = () => {
        localStorage.clear();
        dispatch(AuthActions.setTokenId('none'));
-       console.log(idToken);
+
     };
     useEffect(()=>{
         if(localStorage.getItem("pomodoroTime")){

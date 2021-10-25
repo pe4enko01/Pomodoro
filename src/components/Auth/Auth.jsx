@@ -33,7 +33,6 @@ export const Auth = () => {
     };
     // Hendler смены isLogin
     const ChangeIsLoginHendler = (e) => {
-        console.log(isLogin);
         setIsLogin(!isLogin);
     };
     //const idToken = useSelector(state => state.auth.idToken);
